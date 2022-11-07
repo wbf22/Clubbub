@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.freedommuskrats.clubbub.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/clubName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Club Name" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/clubName">
+
+            <ImageView
+                android:id="@+id/clubImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/none" />
+            <!--        android:layout_centerVertical="true"-->
+
+            <TextView
+                android:id="@+id/clubDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="This is a club description" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
