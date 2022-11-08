@@ -1,14 +1,19 @@
 package com.freedommuskrats.clubbub.ui.dashboard;
 
 import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
+import static com.freedommuskrats.clubbub.domain.FakeData.filterResults;
+import static com.freedommuskrats.clubbub.domain.FakeData.getClubByName;
+import static com.freedommuskrats.clubbub.domain.FakeData.getClubsFilterBySearch;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubsLimitedByDistance;
 import static com.freedommuskrats.clubbub.domain.FakeData.getFakeClubs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -22,6 +27,7 @@ import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.databinding.FragmentSearchBinding;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
+import com.freedommuskrats.clubbub.ui.club.MemberClubView;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -58,13 +64,32 @@ public class DashboardFragment extends Fragment {
 
         adapter.addItems(getFakeClubs());
 
+        SearchView searchView = root.findViewById(R.id.searchView);
+
         SeekBar seekBar = root.findViewById(R.id.seekBar);
         TextView distVal = root.findViewById(R.id.distVal);
         distVal.setText(String.valueOf(seekBar.getProgress()));
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                List<Club> limited = filterResults(getFakeClubs(), searchView.getQuery().toString(), seekBar.getProgress(), user);
+                adapter.setItems(limited);
+                return false;
+            }
+        });
+
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                List<Club> limited = getClubsLimitedByDistance(user.getLatitude(), user.getLongitude(), seekBar.getProgress());
+                List<Club> limited = filterResults(getFakeClubs(), searchView.getQuery().toString(), seekBar.getProgress(), user);
                 adapter.setItems(limited);
                 distVal.setText(String.valueOf(seekBar.getProgress()));
             }
@@ -85,6 +110,8 @@ public class DashboardFragment extends Fragment {
 //        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
+
+
 
     @Override
     public void onDestroyView() {
@@ -113,7 +140,10 @@ public class DashboardFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO go to club page
+                    Intent intent = new Intent(getContext(), MemberClubView.class);
+                    Club club = getClubByName(title.getText().toString());
+                    intent.putExtra(MemberClubView.CLUB_KEY, club);
+                    startActivity(intent);
                 }
             });
         }

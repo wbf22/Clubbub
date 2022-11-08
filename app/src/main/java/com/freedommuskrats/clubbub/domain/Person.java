@@ -1,9 +1,12 @@
 package com.freedommuskrats.clubbub.domain;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
-public class Person {
+public class Person implements Serializable {
 
+    private UUID id;
     private String firstName;
     private String lastName;
     private List<Club> clubsOwned;
@@ -12,13 +15,22 @@ public class Person {
     private int latitude;
 
 
-    public Person(String firstName, String lastName, int longitude, int latitude) {
+    public Person(UUID id, String firstName, String lastName, int longitude, int latitude) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.longitude = longitude;
         this.latitude = latitude;
     }
 
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;

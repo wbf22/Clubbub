@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_nav_membership"
+        android:title="@string/membership_tab" />
+
+    <item
+        android:id="@+id/home_nav_owned"
+        android:title="@string/created_clubs_tab" />
+
+</menu>
