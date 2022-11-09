@@ -65,6 +65,24 @@ public class FakeData {
         return selected;
     }
 
+    public static boolean isMember(Person person, Club club) {
+        for (Person p : club.getMembers()) {
+            if (p.getId() == person.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isOwner(Person person, Club club) {
+        for (Person p : club.getClubOwners()) {
+            if (p.getId() == person.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static Club getClubByName(String clubName) {
         List<Club> clubs = getFakeClubs();
         for (Club c : clubs) {

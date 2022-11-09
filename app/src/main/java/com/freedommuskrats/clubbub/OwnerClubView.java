@@ -1,4 +1,4 @@
-package com.freedommuskrats.clubbub.ui.club;
+package com.freedommuskrats.clubbub;
 
 import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.ANNOUNCEMENT;
 import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.CHAT;
@@ -7,47 +7,38 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
-import com.freedommuskrats.clubbub.ui.home.HomeFragment;
-import com.freedommuskrats.clubbub.ui.home.HomeScreenCreatedClubs;
-import com.freedommuskrats.clubbub.ui.home.HomeScreenMembership;
+import com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment;
+import com.freedommuskrats.clubbub.ui.club.MemberClubView;
+import com.freedommuskrats.clubbub.ui.club.MemberClubViewHomeFragment;
+import com.freedommuskrats.clubbub.ui.club.OwnerClubViewHomeFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+public class OwnerClubView extends AppCompatActivity {
 
-public class MemberClubView extends AppCompatActivity {
 
     public static final String CLUB_KEY = "CLUB";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_member_club_view);
+        setContentView(R.layout.activity_owner_club_view);
 
         Club club = (Club) getIntent().getSerializableExtra(CLUB_KEY);
 
 
 
-        TabLayout tabLayout = this.findViewById(R.id.memberClubViewTabLayout);
-        ViewPager2 viewPager2 = this.findViewById(R.id.memberClubViewViewPager);
+        TabLayout tabLayout = this.findViewById(R.id.ownerClubViewTabLayout);
+
+        ViewPager2 viewPager2 = this.findViewById(R.id.ownerClubViewViewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager2.setAdapter(viewPagerAdapter);
 
@@ -75,7 +66,6 @@ public class MemberClubView extends AppCompatActivity {
                 tabLayout.getTabAt(position).select();
             }
         });
-
     }
 
 
@@ -91,13 +81,13 @@ public class MemberClubView extends AppCompatActivity {
         public Fragment createFragment(int position) {
             switch (position){
                 case 0 :
-                    return new MemberClubViewHomeFragment();
+                    return new OwnerClubViewHomeFragment();
                 case 1 :
-                    return new AnnouncementChatFragment(ANNOUNCEMENT, false);
+                    return new AnnouncementChatFragment(ANNOUNCEMENT, true);
                 case 2 :
-                    return new AnnouncementChatFragment(CHAT, false);
+                    return new AnnouncementChatFragment(CHAT, true);
                 default :
-                    return new MemberClubViewHomeFragment();
+                    return new OwnerClubViewHomeFragment();
             }
         }
 
@@ -106,6 +96,5 @@ public class MemberClubView extends AppCompatActivity {
             return 3;
         }
     }
-
 
 }

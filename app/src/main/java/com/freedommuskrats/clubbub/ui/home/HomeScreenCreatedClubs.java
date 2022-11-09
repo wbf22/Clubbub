@@ -4,6 +4,8 @@ import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubByName;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubsPersonIsMember;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubsPersonIsOwner;
+import static com.freedommuskrats.clubbub.domain.FakeData.isMember;
+import static com.freedommuskrats.clubbub.domain.FakeData.isOwner;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +21,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.freedommuskrats.clubbub.OwnerClubView;
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
 import com.freedommuskrats.clubbub.ui.club.MemberClubView;
+import com.freedommuskrats.clubbub.ui.club.NonMemberClubView;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -39,11 +43,13 @@ public class HomeScreenCreatedClubs extends Fragment {
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
 
+    private Person user;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Person user = defaultPerson(); // TODO pass in after login
+        user = defaultPerson(); // TODO pass in after login
 
         View root = inflater.inflate(R.layout.fragment_home_screen_membership, container, false);
 
@@ -78,10 +84,12 @@ public class HomeScreenCreatedClubs extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getContext(), MemberClubView.class);
                     Club club = getClubByName(title.getText().toString());
-                    intent.putExtra(MemberClubView.CLUB_KEY, club);
-                    startActivity(intent);
+                    if (isOwner(user, club)) {
+                        Intent intent = new Intent(getContext(), OwnerClubView.class);
+                        intent.putExtra(OwnerClubView.CLUB_KEY, club);
+                        startActivity(intent);
+                    }
                 }
             });
         }

@@ -6,6 +6,8 @@ import static com.freedommuskrats.clubbub.domain.FakeData.getClubByName;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubsFilterBySearch;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubsLimitedByDistance;
 import static com.freedommuskrats.clubbub.domain.FakeData.getFakeClubs;
+import static com.freedommuskrats.clubbub.domain.FakeData.isMember;
+import static com.freedommuskrats.clubbub.domain.FakeData.isOwner;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import com.freedommuskrats.clubbub.databinding.FragmentSearchBinding;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
 import com.freedommuskrats.clubbub.ui.club.MemberClubView;
+import com.freedommuskrats.clubbub.ui.club.NonMemberClubView;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -45,12 +48,14 @@ public class DashboardFragment extends Fragment {
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
 
+    private Person user;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         DashboardViewModel dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
 
-        Person user = defaultPerson(); // TODO pass in after login
+        user = defaultPerson(); // TODO pass in after login
 
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -140,10 +145,20 @@ public class DashboardFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getContext(), MemberClubView.class);
                     Club club = getClubByName(title.getText().toString());
-                    intent.putExtra(MemberClubView.CLUB_KEY, club);
-                    startActivity(intent);
+                    if (isMember(user, club)) {
+                        Intent intent = new Intent(getContext(), MemberClubView.class);
+                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
+                        startActivity(intent);
+                    } else if (isOwner(user, club)) {
+                        Intent intent = new Intent(getContext(), MemberClubView.class);
+                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(getContext(), NonMemberClubView.class);
+                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
+                        startActivity(intent);
+                    }
                 }
             });
         }

@@ -32,9 +32,11 @@ public class AnnouncementChatFragment extends Fragment {
     private static final String CLUB_KEY = "CLUB";
 
     private int announcementOrChat = 1;
+    private boolean isOwner;
 
-    public AnnouncementChatFragment(int announcementOrChat) {
+    public AnnouncementChatFragment(int announcementOrChat, boolean isOwner) {
         this.announcementOrChat = announcementOrChat;
+        this.isOwner = isOwner;
     }
 
     @Override

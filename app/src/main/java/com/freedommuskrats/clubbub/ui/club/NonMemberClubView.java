@@ -30,7 +30,7 @@ public class NonMemberClubView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_member_club_view);
+        setContentView(R.layout.activity_non_member_club_view);
 
         Club club = (Club) getIntent().getSerializableExtra(CLUB_KEY);
 

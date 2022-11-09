@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_grey"
-    tools:context=".ui.club.NonMemberClubView">
+    android:background="@color/dark_grey">
 
 
     <LinearLayout
@@ -18,23 +18,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+
         <TextView
-            android:id="@+id/nonMemberClubViewTitle"
+            android:id="@+id/memberClubViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="UnFilled"
+            android:text="ClubName"
             android:textAlignment="center"
-            android:textSize="50sp"
-            android:layout_margin="20dp"/>
+            android:textSize="50sp" />
 
-        <ImageView
-            android:id="@+id/nonMemberClubViewImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal" />
+
 
         <TextView
+            android:id="@+id/memberClubViewDescriptionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -43,7 +41,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/nonMemberClubViewDescription"
+            android:id="@+id/memberClubViewDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -62,9 +60,9 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/green"
-                android:text="@string/request_to_join"
-                android:textColor="@color/light_grey" />
+                android:backgroundTint="@color/dull_red"
+                android:text="@string/leave"
+                android:textColor="@color/dark_grey" />
 
             <Button
                 android:layout_width="0dp"
@@ -73,21 +71,13 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
                 android:text="@string/ask_a_question"
-                android:textColor="@color/light_grey" />
+                android:textColor="@color/dark_grey" />
         </LinearLayout>
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_margin="20dp"
-            android:background="@color/dark_grey" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/nonMemberclubViewRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+
+
 
 
     </LinearLayout>

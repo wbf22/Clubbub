@@ -10,7 +10,8 @@
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1765" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/activity_member_club_view.xml" value="0.176" />
-        <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/activity_non_member_club_view.xml" value="0.275" />
+        <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/activity_non_member_club_view.xml" value="0.264" />
+        <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/activity_owner_club_view.xml" value="0.275" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/doubleImageRow.xml" value="0.1" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/double_image_row.xml" value="0.1" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_announcements.xml" value="0.27395833333333336" />
@@ -21,11 +22,14 @@
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_home_screen_created_clubs.xml" value="0.25277777777777777" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_home_screen_membership.xml" value="0.25277777777777777" />
+        <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_member_club_view_home.xml" value="0.1" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_notifications.xml" value="0.275" />
+        <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_owner_club_view_home.xml" value="0.27395833333333336" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/home_screen_membership.xml" value="0.290625" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/loading_row.xml" value="0.3875" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/message_row.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/pop_up.xml" value="0.2247863247863248" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/tile_layout.xml" value="0.4033203125" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/layout/tile_row.xml" value="0.3875" />
         <entry key="..\:/Users/brand/AndroidStudioProjects/Clubbub/app/src/main/res/menu/bottom_nav_menu.xml" value="0.275" />
