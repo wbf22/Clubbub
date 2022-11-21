@@ -23,11 +23,15 @@ public class MemberClubViewHomeFragment extends Fragment {
 
     public static final String CLUB_KEY = "CLUB";
 
+    private Club club;
+
+    public MemberClubViewHomeFragment(Club club) {
+        this.club = club;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        Club club = (Club) getActivity().getIntent().getSerializableExtra(CLUB_KEY);
 
         View root = inflater.inflate(R.layout.fragment_member_club_view_home, container, false);
 

@@ -3,15 +3,12 @@ package com.freedommuskrats.clubbub.ui.home;
 import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubByName;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubsPersonIsMember;
-import static com.freedommuskrats.clubbub.domain.FakeData.getFakeClubs;
 import static com.freedommuskrats.clubbub.domain.FakeData.isMember;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,17 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.freedommuskrats.clubbub.R;
-import com.freedommuskrats.clubbub.databinding.FragmentSearchBinding;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
-import com.freedommuskrats.clubbub.ui.club.MemberClubView;
-import com.freedommuskrats.clubbub.ui.club.NonMemberClubView;
-import com.freedommuskrats.clubbub.ui.dashboard.DashboardFragment;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -48,6 +39,15 @@ public class HomeScreenMembership extends Fragment {
     private ViewGroup container;
 
     private Person user;
+
+
+    private HomeFragment userPageContainer;
+
+
+    public HomeScreenMembership(HomeFragment userPageContainer) {
+        this.userPageContainer = userPageContainer;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,7 +74,6 @@ public class HomeScreenMembership extends Fragment {
     }
 
 
-
     private class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView image;
@@ -93,13 +92,11 @@ public class HomeScreenMembership extends Fragment {
                 public void onClick(View view) {
                     Club club = getClubByName(title.getText().toString());
                     if (isMember(user, club)) {
-                        Intent intent = new Intent(getContext(), MemberClubView.class);
-                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
-                        startActivity(intent);
-//                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-//                        ft.replace(R.id.homeScreenFragment, new MemberClubView());
-//                        ft.commit();
-//                        View root = inflater.inflate(R.layout.fragment_member_club_view, container, true);
+//                        Intent intent = new Intent(getContext(), MemberClubView.class);
+//                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
+//                        startActivity(intent);
+                        userPageContainer.goToClubPage(club);
+
                     }
                 }
             });
