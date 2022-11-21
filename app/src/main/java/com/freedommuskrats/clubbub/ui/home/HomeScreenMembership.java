@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,13 +44,19 @@ public class HomeScreenMembership extends Fragment {
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
 
+    private LayoutInflater inflater;
+    private ViewGroup container;
+
     private Person user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        this.inflater = inflater;
+        this.container = container;
         user = defaultPerson(); // TODO pass in after login
+
 
         View root = inflater.inflate(R.layout.fragment_home_screen_membership, container, false);
 
@@ -89,6 +96,10 @@ public class HomeScreenMembership extends Fragment {
                         Intent intent = new Intent(getContext(), MemberClubView.class);
                         intent.putExtra(NonMemberClubView.CLUB_KEY, club);
                         startActivity(intent);
+//                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+//                        ft.replace(R.id.homeScreenFragment, new MemberClubView());
+//                        ft.commit();
+//                        View root = inflater.inflate(R.layout.fragment_member_club_view, container, true);
                     }
                 }
             });

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
-    android:id="@+id/homeScreenFragment">
+    tools:context=".ui.home.ClubLists">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -35,5 +34,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

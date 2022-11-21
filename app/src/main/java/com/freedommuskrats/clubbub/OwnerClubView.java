@@ -11,15 +11,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment;
-import com.freedommuskrats.clubbub.ui.club.MemberClubView;
-import com.freedommuskrats.clubbub.ui.club.MemberClubViewHomeFragment;
 import com.freedommuskrats.clubbub.ui.club.OwnerClubViewHomeFragment;
 import com.google.android.material.tabs.TabLayout;
-import com.squareup.picasso.Picasso;
 
 public class OwnerClubView extends AppCompatActivity {
 
@@ -30,7 +26,7 @@ public class OwnerClubView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_club_view);
+        setContentView(R.layout.fragment_owner_club_view);
 
         Club club = (Club) getIntent().getSerializableExtra(CLUB_KEY);
 
