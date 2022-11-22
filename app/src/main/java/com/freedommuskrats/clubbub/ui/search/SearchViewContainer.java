@@ -1,66 +1,66 @@
-package com.freedommuskrats.clubbub.ui.dashboard;
+package com.freedommuskrats.clubbub.ui.search;
 
 import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
 import static com.freedommuskrats.clubbub.domain.FakeData.filterResults;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubByName;
-import static com.freedommuskrats.clubbub.domain.FakeData.getClubsFilterBySearch;
-import static com.freedommuskrats.clubbub.domain.FakeData.getClubsLimitedByDistance;
 import static com.freedommuskrats.clubbub.domain.FakeData.getFakeClubs;
 import static com.freedommuskrats.clubbub.domain.FakeData.isMember;
 import static com.freedommuskrats.clubbub.domain.FakeData.isOwner;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.databinding.FragmentSearchBinding;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
-import com.freedommuskrats.clubbub.ui.club.MemberClubView;
-import com.freedommuskrats.clubbub.ui.club.NonMemberClubView;
+import com.freedommuskrats.clubbub.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class DashboardFragment extends Fragment {
-
-    private FragmentSearchBinding binding;
+public class SearchViewContainer extends Fragment {
 
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
 
+
+    private SearchFragment parent;
     private Person user;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+    public SearchViewContainer(SearchFragment parent) {
+        this.parent = parent;
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         user = defaultPerson(); // TODO pass in after login
 
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View view = inflater.inflate(R.layout.fragment_search_view_container, container, false);
 
-        RecyclerView recyclerView = root.findViewById(R.id.searchRecyclerview);
+        RecyclerView recyclerView = view.findViewById(R.id.searchRecyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -69,11 +69,31 @@ public class DashboardFragment extends Fragment {
 
         adapter.addItems(getFakeClubs());
 
-        SearchView searchView = root.findViewById(R.id.searchView);
+        SearchView searchView = view.findViewById(R.id.searchView);
 
-        SeekBar seekBar = root.findViewById(R.id.seekBar);
-        TextView distVal = root.findViewById(R.id.distVal);
+        SeekBar seekBar = view.findViewById(R.id.seekBar);
+        TextView distVal = view.findViewById(R.id.distVal);
         distVal.setText(String.valueOf(seekBar.getProgress()));
+
+        EditText searcher = view.findViewById(R.id.editTextTextPersonName);
+
+        searcher.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                List<Club> limited = filterResults(getFakeClubs(), searcher.getText().toString(), seekBar.getProgress(), user);
+                adapter.setItems(limited);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -113,16 +133,9 @@ public class DashboardFragment extends Fragment {
 
 //        final TextView textView = binding.textDashboard;
 //        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return view;
     }
 
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -147,17 +160,14 @@ public class DashboardFragment extends Fragment {
                 public void onClick(View view) {
                     Club club = getClubByName(title.getText().toString());
                     if (isMember(user, club)) {
-                        Intent intent = new Intent(getContext(), MemberClubView.class);
-                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
-                        startActivity(intent);
+//                        Intent intent = new Intent(getContext(), MemberClubView.class);
+//                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
+//                        startActivity(intent);
+                        parent.goToClubPage(club, SearchFragment.MEMBER);
                     } else if (isOwner(user, club)) {
-                        Intent intent = new Intent(getContext(), MemberClubView.class);
-                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
-                        startActivity(intent);
+                        parent.goToClubPage(club, SearchFragment.OWNER);
                     } else {
-                        Intent intent = new Intent(getContext(), NonMemberClubView.class);
-                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
-                        startActivity(intent);
+                        parent.goToClubPage(club, SearchFragment.NON_MEMBER);
                     }
                 }
             });
@@ -239,7 +249,7 @@ public class DashboardFragment extends Fragment {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(DashboardFragment.this.getContext());
+            LayoutInflater layoutInflater = LayoutInflater.from(SearchViewContainer.this.getContext());
             View view;
 
             if (viewType == LOADING_DATA_VIEW) {

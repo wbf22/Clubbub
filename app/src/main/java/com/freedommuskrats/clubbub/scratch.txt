@@ -1,0 +1,10 @@
+Modify Navbar fragment to have fragment in it with the tabs instead
+- pass navbar fragment in to sub fragments with a method to call to set the club page view
+
+
+Replace Club view Activity with an identical fragment
+
+
+Modify buttons in recyclerviews
+- call method on navbar fragment to display club view
+

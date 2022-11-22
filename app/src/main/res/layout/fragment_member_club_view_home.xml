@@ -7,79 +7,78 @@
     android:layout_height="match_parent"
     android:background="@color/dark_grey">
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/light_grey"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-
-        <TextView
-            android:id="@+id/memberClubViewTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="ClubName"
-            android:textAlignment="center"
-            android:textSize="50sp" />
-
-
-
-        <TextView
-            android:id="@+id/memberClubViewDescriptionTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/description"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/memberClubViewDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/description"
-            android:textSize="15sp" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/light_grey"
+            android:orientation="vertical">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/dull_red"
-                android:text="@string/leave"
-                android:textColor="@color/dark_grey" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:text="@string/ask_a_question"
-                android:textColor="@color/dark_grey" />
+
+            <TextView
+                android:id="@+id/memberClubViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="ClubName"
+                android:textAlignment="center"
+                android:textSize="50sp"/>
+
+
+
+            <TextView
+                android:id="@+id/memberClubViewDescriptionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="@string/description"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/memberClubViewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="@string/description"
+                android:textSize="15sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/dull_red"
+                    android:text="@string/leave"
+                    android:textColor="@color/dark_grey" />
+
+            </LinearLayout>
+
+
+
+
+
+
+
         </LinearLayout>
 
 
-
-
-
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

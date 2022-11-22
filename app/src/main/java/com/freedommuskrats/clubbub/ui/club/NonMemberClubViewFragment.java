@@ -1,16 +1,17 @@
 package com.freedommuskrats.clubbub.ui.club;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
@@ -21,28 +22,32 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class NonMemberClubView extends AppCompatActivity {
+public class NonMemberClubViewFragment extends Fragment {
 
-    public static final String CLUB_KEY = "CLUB";
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
+    private Club club;
+
+    public NonMemberClubViewFragment(Club club) {
+        this.club = club;
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_non_member_club_view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_non_member_club_view, container, false);
 
-        Club club = (Club) getIntent().getSerializableExtra(CLUB_KEY);
-
-        TextView clubName = this.findViewById(R.id.nonMemberClubViewTitle);
+        TextView clubName = view.findViewById(R.id.nonMemberClubViewTitle);
         clubName.setText(club.getName());
-        TextView description = this.findViewById(R.id.nonMemberClubViewDescription);
+        TextView description = view.findViewById(R.id.nonMemberClubViewDescription);
         description.setText(club.getDescription());
-        ImageView clubImage = this.findViewById(R.id.nonMemberClubViewImageView);
+        ImageView clubImage = view.findViewById(R.id.nonMemberClubViewImageView);
         Picasso.get().load(R.mipmap.stickman_foreground).into(clubImage);
 
-        RecyclerView recyclerView = this.findViewById(R.id.nonMemberclubViewRecyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView recyclerView = view.findViewById(R.id.nonMemberclubViewRecyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         RecycleViewAdapter adapter = new RecycleViewAdapter();
@@ -57,6 +62,7 @@ public class NonMemberClubView extends AppCompatActivity {
 
         adapter.addItems(doubledImageUrls);
 
+        return view;
     }
 
 
@@ -123,7 +129,7 @@ public class NonMemberClubView extends AppCompatActivity {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
+            LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             View view;
 
             if (viewType == LOADING_DATA_VIEW) {

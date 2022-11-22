@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -35,12 +34,13 @@ public class MemberClubViewFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_member_club_view2, container, false);
+        View view = inflater.inflate(R.layout.fragment_member_club_view, container, false);
 
         TabLayout tabLayout = view.findViewById(R.id.memberClubViewTabLayout);
         ViewPager2 viewPager2 = view.findViewById(R.id.memberClubViewViewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager2.setAdapter(viewPagerAdapter);
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

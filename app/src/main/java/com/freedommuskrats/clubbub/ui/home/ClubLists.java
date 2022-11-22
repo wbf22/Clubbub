@@ -83,7 +83,7 @@ public class ClubLists extends Fragment {
                 case 0 :
                     return new HomeScreenMembership(parent);
                 case 1 :
-                    return new HomeScreenCreatedClubs();
+                    return new HomeScreenCreatedClubs(parent);
                 default :
                     return new HomeScreenMembership(parent);
             }

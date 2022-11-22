@@ -35,9 +35,6 @@ public class HomeScreenMembership extends Fragment {
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
 
-    private LayoutInflater inflater;
-    private ViewGroup container;
-
     private Person user;
 
 
@@ -53,8 +50,6 @@ public class HomeScreenMembership extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        this.inflater = inflater;
-        this.container = container;
         user = defaultPerson(); // TODO pass in after login
 
 
@@ -92,11 +87,7 @@ public class HomeScreenMembership extends Fragment {
                 public void onClick(View view) {
                     Club club = getClubByName(title.getText().toString());
                     if (isMember(user, club)) {
-//                        Intent intent = new Intent(getContext(), MemberClubView.class);
-//                        intent.putExtra(NonMemberClubView.CLUB_KEY, club);
-//                        startActivity(intent);
-                        userPageContainer.goToClubPage(club);
-
+                        userPageContainer.goToClubPage(club, HomeFragment.MEMBER);
                     }
                 }
             });
