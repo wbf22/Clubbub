@@ -13,7 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.databinding.FragmentHomeBinding;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.domain.Person;
 import com.freedommuskrats.clubbub.ui.club.MemberClubViewFragment;
+import com.freedommuskrats.clubbub.ui.club.OwnerClubViewFragment;
 
 public class HomeFragment extends Fragment {
     public static final String MEMBER = "MEMBER";
@@ -50,7 +52,7 @@ public class HomeFragment extends Fragment {
 
         } else if (type.equals(OWNER)) {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.homeFrame, new MemberClubViewFragment(club));
+            transaction.replace(R.id.homeFrame, new OwnerClubViewFragment(club));
             transaction.commit();
         }
 

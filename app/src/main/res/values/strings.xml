@@ -113,4 +113,9 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="approve_requests">Approve Requests</string>
+    <string name="edit">Edit</string>
+    <string name="clubs">Clubs</string>
+    <string name="people">People</string>
+    <string name="message">message</string>
 </resources>

@@ -74,6 +74,7 @@ public class HomeScreenMembership extends Fragment {
         private final ImageView image;
         private final TextView title;
         private final TextView description;
+        private final TextView memberSince;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +82,8 @@ public class HomeScreenMembership extends Fragment {
             image = itemView.findViewById(R.id.clubImage);
             title = itemView.findViewById(R.id.clubName);
             description = itemView.findViewById(R.id.clubDescription);
+            memberSince = itemView.findViewById(R.id.clubMemberSince);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,6 +100,9 @@ public class HomeScreenMembership extends Fragment {
             title.setText(club.getName());
             description.setText(club.getDescription());
             Picasso.get().load(R.mipmap.stickman_foreground).into(image);
+            if (isMember(user, club)) {
+                memberSince.setText("Member Since 2022"); //TODO set this up to be in the data
+            }
 //            if (isValidURL(club.getImageUrl())) {
 //                Picasso.get().load(club.getImageUrl()).into(image);
 //            }

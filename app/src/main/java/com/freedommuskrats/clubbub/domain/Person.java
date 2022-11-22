@@ -1,6 +1,8 @@
 package com.freedommuskrats.clubbub.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,8 +11,8 @@ public class Person implements Serializable {
     private UUID id;
     private String firstName;
     private String lastName;
-    private List<Club> clubsOwned;
-    private List<Club> clubsMemberOf;
+    private List<Club> clubsOwned = new ArrayList<>();
+    private List<Club> clubsMemberOf = new ArrayList<>();
     private int longitude;
     private int latitude;
 

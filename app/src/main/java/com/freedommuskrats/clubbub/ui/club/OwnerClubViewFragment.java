@@ -34,8 +34,8 @@ public class OwnerClubViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_owner_club_view, container, false);
 
-        TabLayout tabLayout = view.findViewById(R.id.memberClubViewTabLayout);
-        ViewPager2 viewPager2 = view.findViewById(R.id.memberClubViewViewPager);
+        TabLayout tabLayout = view.findViewById(R.id.ownerClubViewTabLayout);
+        ViewPager2 viewPager2 = view.findViewById(R.id.ownerClubViewViewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager2.setAdapter(viewPagerAdapter);
 
@@ -81,13 +81,13 @@ public class OwnerClubViewFragment extends Fragment {
         public Fragment createFragment(int position) {
             switch (position){
                 case 0 :
-                    return new OwnerClubViewHomeFragment();
+                    return new OwnerClubViewHomeFragment(club);
                 case 1 :
                     return new AnnouncementChatFragment(ANNOUNCEMENT, true);
                 case 2 :
                     return new AnnouncementChatFragment(CHAT, true);
                 default :
-                    return new OwnerClubViewHomeFragment();
+                    return new OwnerClubViewHomeFragment(club);
             }
         }
 

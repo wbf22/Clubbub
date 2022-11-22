@@ -11,9 +11,8 @@ public class FakeData {
 
     private static Person bob = new Person(UUID.randomUUID(), "Bob", "Crawson", 20, 30);
     private static Person kristie = new Person(UUID.randomUUID(), "Kristie", "Johnson", 25, 31);
-    private static List<Person> initAllPeople() {
-        return new ArrayList<>(Arrays.asList(bob, kristie));
-    }
+    private static List<Person> people = new ArrayList<>(Arrays.asList(bob, kristie));
+
     private static List<Person> initSingletonPerson(Person person) {
         return new ArrayList<>(Collections.singletonList(person));
     }
@@ -21,19 +20,31 @@ public class FakeData {
         return new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null, null, null, null, null));
     }
 
-    private static List<Post> chat = Arrays.asList(new Post("Bob", "Hey guys, do you have any fish?"), new Post("Kristie","No we don't have any fish!"));
-    private static List<Post> announcements = Collections.singletonList(new Post("Bob", "Hey guys we're going to get a fish on wednesday"));
+    private static List<Post> chat = new ArrayList<>(Arrays.asList(new Post("Bob", "Hey guys, do you have any fish?"), new Post("Kristie","No we don't have any fish!")));
+    private static List<Post> announcements = new ArrayList<>(Collections.singletonList(new Post("Bob", "Hey guys we're going to get a fish on wednesday")));
 
 
     private static Club club1 = new Club("Provo Fishing", null, "We fish around Utah lake", 40, 40, initSingletonPerson(bob), initSingletonPerson(bob), initImageUrls());
-    private static Club club2 = new Club("Provo Knitting", null, "We knit sweaters and...", 20, 40, initAllPeople(), initSingletonPerson(bob), initImageUrls());
-    private static Club club3 = new Club("BYU ballroom", null, "Ready to learn how to dance, ..", 10, 40, initAllPeople(), initSingletonPerson(kristie), initImageUrls());
+    private static Club club2 = new Club("Provo Knitting", null, "We knit sweaters and...", 20, 40, people, initSingletonPerson(bob), initImageUrls());
+    private static Club club3 = new Club("BYU ballroom", null, "Ready to learn how to dance, ..", 10, 40, people, initSingletonPerson(kristie), initImageUrls());
     private static Club club4 = new Club("SpringVille Potters", null, "Pottery is our passion.", 40, 10, initSingletonPerson(kristie), initSingletonPerson(kristie), initImageUrls());
 
+    private static List<Club> clubs = Arrays.asList(club1, club2, club3, club4);
 
 
     public static List<Club> getFakeClubs() {
-        return Arrays.asList(club1, club2, club3, club4);
+        return clubs;
+    }
+
+    public static List<Person> getFakePeople() {
+        bob.setClubsMemberOf(Arrays.asList(club1, club2, club3));
+        kristie.setClubsMemberOf(Arrays.asList(club2, club3, club4));
+
+        bob.setClubsOwned(Arrays.asList(club1, club2));
+        kristie.setClubsOwned(Arrays.asList(club3, club4));
+
+        people = new ArrayList<>(Arrays.asList(bob, kristie));
+        return people;
     }
 
     public static List<Post> getChat() { return chat; }
@@ -126,8 +137,48 @@ public class FakeData {
         return filtered;
     }
 
+    public static List<Person> filterPersonResults(List<Person> clubs, String search, int distance, Person user) {
+        List<Person> limited = getPeopleLimitedByDistance(clubs, user.getLatitude(), user.getLongitude(), distance);
+        return getPeopleFilterBySearch(limited, search);
+    }
+
+    public static List<Person> getPeopleLimitedByDistance(List<Person> people, int userLat, int userLong, int maxDist) {
+        List<Person> limited = new ArrayList<>();
+        for (Person c : people) {
+            int dist = Math.abs(userLat - c.getLatitude()) + Math.abs(userLong - c.getLongitude());
+            if (dist < maxDist) {
+                limited.add(c);
+            }
+        }
+        return limited;
+    }
+
+    public static List<Person> getPeopleFilterBySearch(List<Person> people, String search) {
+        List<Person> filtered = new ArrayList<>();
+        for (Person c : people) {
+            boolean inName = c.getFirstName().toLowerCase().contains(search.toLowerCase());
+            boolean inDes = c.getLastName().toLowerCase().contains(search.toLowerCase());
+            if (inName) {
+                filtered.add(0, c);
+            } else {
+                if (inDes) {
+                    filtered.add(c);
+                }
+            }
+
+        }
+        return filtered;
+    }
+
     public static Person defaultPerson() {
         return bob;
+    }
+
+
+    public static void updateClub(Club original, String title, String description) {
+        int i = clubs.indexOf(original);
+        clubs.get(i).setName(title);
+        clubs.get(i).setDescription(description);
     }
 
 }
