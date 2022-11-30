@@ -14,15 +14,18 @@ import android.widget.EditText;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.ui.club.owner.OwnerClubViewFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditClubFragment extends Fragment {
 
 
     private Club club;
+    private EditClubCaller clubCaller;
 
-    public EditClubFragment(Club club) {
+    public EditClubFragment(Club club, EditClubCaller clubCaller) {
         this.club = club;
+        this.clubCaller = clubCaller;
     }
 
 
@@ -47,13 +50,9 @@ public class EditClubFragment extends Fragment {
             public void onClick(View view) {
                 saveButton.setEnabled(false);
 
-                updateClub(club, title.getText().toString(), description.getText().toString());
-                club.setName(title.getText().toString());
-                club.setDescription(description.getText().toString());
+                club = updateClub(club, title.getText().toString(), description.getText().toString());
 
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.editClubContainer, new OwnerClubViewHomeFragment(club));
-                transaction.commit();
+                clubCaller.handleEditClubDone(club);
             }
         });
 

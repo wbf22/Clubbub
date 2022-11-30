@@ -1,52 +1,18 @@
 package com.freedommuskrats.clubbub.ui.search;
 
-import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
-import static com.freedommuskrats.clubbub.domain.FakeData.filterResults;
-import static com.freedommuskrats.clubbub.domain.FakeData.getClubByName;
-import static com.freedommuskrats.clubbub.domain.FakeData.getFakeClubs;
-import static com.freedommuskrats.clubbub.domain.FakeData.getFakePeople;
-import static com.freedommuskrats.clubbub.domain.FakeData.isMember;
-import static com.freedommuskrats.clubbub.domain.FakeData.isOwner;
-import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.ANNOUNCEMENT;
-import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.CHAT;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.freedommuskrats.clubbub.R;
-import com.freedommuskrats.clubbub.databinding.FragmentSearchBinding;
-import com.freedommuskrats.clubbub.domain.Club;
-import com.freedommuskrats.clubbub.domain.Person;
-import com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment;
-import com.freedommuskrats.clubbub.ui.club.MemberClubViewFragment;
-import com.freedommuskrats.clubbub.ui.club.MemberClubViewHomeFragment;
-import com.freedommuskrats.clubbub.ui.home.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
-import com.squareup.picasso.Picasso;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class SearchViewContainer extends Fragment {

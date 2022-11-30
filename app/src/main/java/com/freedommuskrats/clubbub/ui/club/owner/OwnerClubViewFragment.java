@@ -1,4 +1,4 @@
-package com.freedommuskrats.clubbub.ui.club;
+package com.freedommuskrats.clubbub.ui.club.owner;
 
 import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.ANNOUNCEMENT;
 import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.CHAT;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class OwnerClubViewFragment extends Fragment {
@@ -81,13 +81,13 @@ public class OwnerClubViewFragment extends Fragment {
         public Fragment createFragment(int position) {
             switch (position){
                 case 0 :
-                    return new OwnerClubViewHomeFragment(club);
+                    return new OwnerClubViewContainer(club);
                 case 1 :
                     return new AnnouncementChatFragment(ANNOUNCEMENT, true);
                 case 2 :
                     return new AnnouncementChatFragment(CHAT, true);
                 default :
-                    return new OwnerClubViewHomeFragment(club);
+                    return new OwnerClubViewContainer(club);
             }
         }
 

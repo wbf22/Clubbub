@@ -12,10 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.databinding.FragmentSearchBinding;
 import com.freedommuskrats.clubbub.domain.Club;
-import com.freedommuskrats.clubbub.domain.Person;
-import com.freedommuskrats.clubbub.ui.club.MemberClubViewFragment;
+import com.freedommuskrats.clubbub.ui.club.member.MemberClubViewFragment;
 import com.freedommuskrats.clubbub.ui.club.NonMemberClubViewFragment;
-import com.freedommuskrats.clubbub.ui.club.OwnerClubViewFragment;
+import com.freedommuskrats.clubbub.ui.club.owner.OwnerClubViewFragment;
 
 
 public class SearchFragment extends Fragment {

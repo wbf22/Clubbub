@@ -1,6 +1,7 @@
 package com.freedommuskrats.clubbub.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,9 +13,9 @@ public class Club implements Serializable {
     private String description; //"https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png"
     private int longitude;
     private int latitude;
-    private List<Person> members;
-    private List<Person> clubOwners;
-    private List<String> imageUrls;
+    private List<Person> members = new ArrayList<>();
+    private List<Person> clubOwners = new ArrayList<>();
+    private List<String> imageUrls = new ArrayList<>();
 
 
     public Club(){}

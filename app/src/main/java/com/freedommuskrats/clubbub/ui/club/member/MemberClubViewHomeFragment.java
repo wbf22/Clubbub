@@ -1,4 +1,4 @@
-package com.freedommuskrats.clubbub.ui.club;
+package com.freedommuskrats.clubbub.ui.club.member;
 
 import static com.freedommuskrats.clubbub.domain.FakeData.getAnnouncements;
 import static com.freedommuskrats.clubbub.domain.FakeData.getChat;

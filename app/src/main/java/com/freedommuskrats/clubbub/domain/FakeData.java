@@ -29,7 +29,7 @@ public class FakeData {
     private static Club club3 = new Club("BYU ballroom", null, "Ready to learn how to dance, ..", 10, 40, people, initSingletonPerson(kristie), initImageUrls());
     private static Club club4 = new Club("SpringVille Potters", null, "Pottery is our passion.", 40, 10, initSingletonPerson(kristie), initSingletonPerson(kristie), initImageUrls());
 
-    private static List<Club> clubs = Arrays.asList(club1, club2, club3, club4);
+    private static List<Club> clubs = new ArrayList<>(Arrays.asList(club1, club2, club3, club4));
 
 
     public static List<Club> getFakeClubs() {
@@ -174,11 +174,22 @@ public class FakeData {
         return bob;
     }
 
+    public static void addClub(Club club, Person creator) {
+        clubs.add(club);
 
-    public static void updateClub(Club original, String title, String description) {
+        club.setClubOwners(new ArrayList<>(Collections.singletonList(creator)));
+
+        List<Club> owned = creator.getClubsOwned();
+        owned.add(club);
+        creator.setClubsOwned(owned);
+    }
+
+    public static Club updateClub(Club original, String title, String description) {
         int i = clubs.indexOf(original);
         clubs.get(i).setName(title);
         clubs.get(i).setDescription(description);
+
+        return clubs.get(i);
     }
 
 }

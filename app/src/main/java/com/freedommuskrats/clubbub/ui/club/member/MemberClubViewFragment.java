@@ -1,4 +1,4 @@
-package com.freedommuskrats.clubbub.ui.club;
+package com.freedommuskrats.clubbub.ui.club.member;
 
 import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.ANNOUNCEMENT;
 import static com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment.CHAT;
@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class MemberClubViewFragment extends Fragment {

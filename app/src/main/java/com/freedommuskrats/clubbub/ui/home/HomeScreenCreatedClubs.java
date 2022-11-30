@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,9 +54,9 @@ public class HomeScreenCreatedClubs extends Fragment {
 
         user = defaultPerson(); // TODO pass in after login
 
-        View root = inflater.inflate(R.layout.fragment_home_screen_membership, container, false);
+        View root = inflater.inflate(R.layout.fragment_home_screen_created_clubs, container, false);
 
-        RecyclerView recyclerView = root.findViewById(R.id.membershipRecyclerView);
+        RecyclerView recyclerView = root.findViewById(R.id.createdClubsRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -64,6 +65,16 @@ public class HomeScreenCreatedClubs extends Fragment {
 
         List<Club> clubs = getClubsPersonIsOwner(user);
         adapter.addItems(clubs);
+
+        FloatingActionButton floatingActionButton = root.findViewById(R.id.addAClubButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userPageContainer.goToClubPage(new Club("Club Name", "Description", user.getLongitude(), user.getLatitude()), HomeFragment.MAKE_CLUB);
+            }
+        });
+
+
 
         return root;
     }

@@ -1,5 +1,8 @@
 package com.freedommuskrats.clubbub.ui.home;
 
+import static com.freedommuskrats.clubbub.domain.FakeData.addClub;
+import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,20 +17,27 @@ import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.databinding.FragmentHomeBinding;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
-import com.freedommuskrats.clubbub.ui.club.MemberClubViewFragment;
-import com.freedommuskrats.clubbub.ui.club.OwnerClubViewFragment;
+import com.freedommuskrats.clubbub.ui.club.EditClubCaller;
+import com.freedommuskrats.clubbub.ui.club.EditClubFragment;
+import com.freedommuskrats.clubbub.ui.club.member.MemberClubViewFragment;
+import com.freedommuskrats.clubbub.ui.club.owner.OwnerClubViewFragment;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements EditClubCaller {
     public static final String MEMBER = "MEMBER";
     public static final String OWNER = "OWNER";
     public static final String NON_MEMBER = "NON_MEMBER";
+    public static final String MAKE_CLUB = "MAKE_CLUB";
 
     private FragmentHomeBinding binding;
+    private Person user;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
+
+
+        user = defaultPerson(); //TODO replace with real data
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -54,6 +64,11 @@ public class HomeFragment extends Fragment {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
             transaction.replace(R.id.homeFrame, new OwnerClubViewFragment(club));
             transaction.commit();
+        } else if (type.equals(MAKE_CLUB)) {
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            addClub(club, user);
+            transaction.replace(R.id.homeFrame, new EditClubFragment(club, this));
+            transaction.commit();
         }
 
     }
@@ -64,4 +79,10 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void handleEditClubDone(Club club) {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.homeFrame, new OwnerClubViewFragment(club));
+        transaction.commit();
+    }
 }

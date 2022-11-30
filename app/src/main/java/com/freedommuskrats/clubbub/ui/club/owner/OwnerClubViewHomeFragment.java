@@ -1,40 +1,39 @@
-package com.freedommuskrats.clubbub.ui.club;
+package com.freedommuskrats.clubbub.ui.club.owner;
 
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.ui.club.EditClubCaller;
+import com.freedommuskrats.clubbub.ui.club.EditClubFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
-public class OwnerClubViewHomeFragment extends Fragment {
+public class OwnerClubViewHomeFragment extends Fragment implements EditClubCaller {
 
-    public static final String CLUB_KEY = "CLUB";
-
+    private OwnerClubViewContainer parentContainer;
     private Club club;
 
-    public OwnerClubViewHomeFragment(Club club) {
+    public OwnerClubViewHomeFragment(Club club, OwnerClubViewContainer parentContainer) {
         this.club = club;
+        this.parentContainer = parentContainer;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View root = inflater.inflate(R.layout.fragment_owner_club_view_home, container, false);
+        // Inflate the layout for this fragment
+        View root = inflater.inflate(R.layout.fragment_owner_club_view_home2, container, false);
 
         TextView clubName = root.findViewById(R.id.ownerClubViewTitle);
         clubName.setText(club.getName());
@@ -53,17 +52,16 @@ public class OwnerClubViewHomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editButton.setEnabled(false);
-
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.ownerClubContainer, new EditClubFragment(club));
-                transaction.commit();
+                parentContainer.setContainerToFragment(new EditClubFragment(club, OwnerClubViewHomeFragment.this));
             }
         });
-
-
 
         return root;
     }
 
 
+    @Override
+    public void handleEditClubDone(Club club) {
+        parentContainer.setContainerToFragment(new OwnerClubViewHomeFragment(club, parentContainer));
+    }
 }
