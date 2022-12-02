@@ -192,4 +192,19 @@ public class FakeData {
         return clubs.get(i);
     }
 
+    public static Person updatePerson(Person original, String title, String description) {
+        int i = people.indexOf(original);
+        String[] splits = title.split(" ");
+        if (splits.length > 0) {
+            people.get(i).setFirstName(splits[0]);
+            if (splits.length > 1) {
+                people.get(i).setLastName(splits[1]);
+            }
+        }
+
+        people.get(i).setDescription(description);
+
+        return people.get(i);
+    }
+
 }

@@ -16,17 +16,20 @@ import android.view.ViewGroup;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.ui.PersonSearchCaller;
 import com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment;
+import com.freedommuskrats.clubbub.ui.home.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class OwnerClubViewFragment extends Fragment {
 
 
-
+    private final PersonSearchCaller homeFragment;
     private Club club;
 
-    public OwnerClubViewFragment(Club club) {
+    public OwnerClubViewFragment(Club club, PersonSearchCaller homeFragment) {
         this.club = club;
+        this.homeFragment = homeFragment;
     }
 
     @Override
@@ -81,13 +84,13 @@ public class OwnerClubViewFragment extends Fragment {
         public Fragment createFragment(int position) {
             switch (position){
                 case 0 :
-                    return new OwnerClubViewContainer(club);
+                    return new OwnerClubViewContainer(club, homeFragment);
                 case 1 :
                     return new AnnouncementChatFragment(ANNOUNCEMENT, true);
                 case 2 :
                     return new AnnouncementChatFragment(CHAT, true);
                 default :
-                    return new OwnerClubViewContainer(club);
+                    return new OwnerClubViewContainer(club, homeFragment);
             }
         }
 

@@ -1,5 +1,7 @@
 package com.freedommuskrats.clubbub.ui.home;
 
+import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -83,6 +85,8 @@ public class ClubLists extends Fragment {
                 case 0 :
                     return new HomeScreenMembership(parent);
                 case 1 :
+                    return new ProfileFragment(parent, defaultPerson());
+                case 2 :
                     return new HomeScreenCreatedClubs(parent);
                 default :
                     return new HomeScreenMembership(parent);
@@ -91,7 +95,7 @@ public class ClubLists extends Fragment {
 
         @Override
         public int getItemCount() {
-            return 2;
+            return 3;
         }
     }
 

@@ -17,12 +17,14 @@ import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.databinding.FragmentHomeBinding;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
-import com.freedommuskrats.clubbub.ui.club.EditClubCaller;
+import com.freedommuskrats.clubbub.ui.PersonSearchCaller;
+import com.freedommuskrats.clubbub.ui.club.EditCaller;
 import com.freedommuskrats.clubbub.ui.club.EditClubFragment;
 import com.freedommuskrats.clubbub.ui.club.member.MemberClubViewFragment;
 import com.freedommuskrats.clubbub.ui.club.owner.OwnerClubViewFragment;
+import com.freedommuskrats.clubbub.ui.search.SearchPeopleFragment;
 
-public class HomeFragment extends Fragment implements EditClubCaller {
+public class HomeFragment extends Fragment implements EditCaller, PersonSearchCaller {
     public static final String MEMBER = "MEMBER";
     public static final String OWNER = "OWNER";
     public static final String NON_MEMBER = "NON_MEMBER";
@@ -62,7 +64,7 @@ public class HomeFragment extends Fragment implements EditClubCaller {
 
         } else if (type.equals(OWNER)) {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.homeFrame, new OwnerClubViewFragment(club));
+            transaction.replace(R.id.homeFrame, new OwnerClubViewFragment(club, this));
             transaction.commit();
         } else if (type.equals(MAKE_CLUB)) {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
@@ -73,6 +75,12 @@ public class HomeFragment extends Fragment implements EditClubCaller {
 
     }
 
+    public void goToFragment(Fragment fragment) {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.homeFrame, fragment);
+        transaction.commit();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -80,9 +88,16 @@ public class HomeFragment extends Fragment implements EditClubCaller {
     }
 
     @Override
-    public void handleEditClubDone(Club club) {
+    public void handleEditDone(Object obj) {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.homeFrame, new OwnerClubViewFragment(club));
+        transaction.replace(R.id.homeFrame, new OwnerClubViewFragment((Club)obj, HomeFragment.this));
+        transaction.commit();
+    }
+
+    @Override
+    public void goToSearch(Club currentClub) {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.homeFrame, new SearchPeopleFragment(currentClub));
         transaction.commit();
     }
 }

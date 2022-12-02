@@ -7,89 +7,97 @@
     android:background="@color/dark_grey"
     tools:context=".ui.club.NonMemberClubViewFragment">
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/light_grey"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/nonMemberClubViewTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="UnFilled"
-            android:textAlignment="center"
-            android:textSize="50sp"
-            android:layout_margin="20dp"/>
-
-        <ImageView
-            android:id="@+id/nonMemberClubViewImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/description"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/nonMemberClubViewDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/description"
-            android:textSize="15sp" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/light_grey"
+            android:orientation="vertical">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/green"
-                android:text="@string/request_to_join"
-                android:textColor="@color/light_grey" />
+            <TextView
+                android:id="@+id/nonMemberClubViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="UnFilled"
+                android:textAlignment="center"
+                android:textSize="50sp"
+                android:layout_margin="20dp"/>
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/nonMemberClubViewImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="@string/description"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/nonMemberClubViewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="@string/description"
+                android:textSize="15sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/green"
+                    android:text="@string/request_to_join"
+                    android:textColor="@color/light_grey" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey"
+                    android:text="@string/ask_a_question"
+                    android:textColor="@color/light_grey" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
                 android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:text="@string/ask_a_question"
-                android:textColor="@color/light_grey" />
+                android:background="@color/dark_grey" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nonMemberclubViewRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
         </LinearLayout>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_margin="20dp"
-            android:background="@color/dark_grey" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/nonMemberclubViewRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+    </ScrollView>
 
 
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

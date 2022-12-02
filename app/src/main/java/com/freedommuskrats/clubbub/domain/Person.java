@@ -15,6 +15,7 @@ public class Person implements Serializable {
     private List<Club> clubsMemberOf = new ArrayList<>();
     private int longitude;
     private int latitude;
+    private String description;
 
 
     public Person(UUID id, String firstName, String lastName, int longitude, int latitude) {
@@ -80,5 +81,13 @@ public class Person implements Serializable {
 
     public void setLatitude(int latitude) {
         this.latitude = latitude;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

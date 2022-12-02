@@ -12,12 +12,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.databinding.FragmentSearchBinding;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.ui.PersonSearchCaller;
 import com.freedommuskrats.clubbub.ui.club.member.MemberClubViewFragment;
 import com.freedommuskrats.clubbub.ui.club.NonMemberClubViewFragment;
 import com.freedommuskrats.clubbub.ui.club.owner.OwnerClubViewFragment;
 
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements PersonSearchCaller {
 
     private FragmentSearchBinding binding;
 
@@ -34,7 +35,7 @@ public class SearchFragment extends Fragment {
         View root = binding.getRoot();
 
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.add(R.id.searchFrame, new SearchViewContainer(this));
+        transaction.add(R.id.searchFrame, new SearchClubsFragment(this));
         transaction.commit();
 
         return root;
@@ -51,7 +52,7 @@ public class SearchFragment extends Fragment {
             transaction.commit();
         } else if (type.equals(OWNER)) {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.searchFrame, new OwnerClubViewFragment(club));
+            transaction.replace(R.id.searchFrame, new OwnerClubViewFragment(club, SearchFragment.this));
             transaction.commit();
         }
 
@@ -63,4 +64,17 @@ public class SearchFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void goToSearch(Club currentClub) {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.searchFrame, new SearchPeopleFragment(currentClub));
+        transaction.commit();
+    }
+
+    @Override
+    public void goToFragment(Fragment fragment) {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.searchFrame, fragment);
+        transaction.commit();
+    }
 }

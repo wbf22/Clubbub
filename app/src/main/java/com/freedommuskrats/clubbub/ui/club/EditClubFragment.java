@@ -5,7 +5,6 @@ import static com.freedommuskrats.clubbub.domain.FakeData.updateClub;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +13,15 @@ import android.widget.EditText;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
-import com.freedommuskrats.clubbub.ui.club.owner.OwnerClubViewFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditClubFragment extends Fragment {
 
 
     private Club club;
-    private EditClubCaller clubCaller;
+    private EditCaller clubCaller;
 
-    public EditClubFragment(Club club, EditClubCaller clubCaller) {
+    public EditClubFragment(Club club, EditCaller clubCaller) {
         this.club = club;
         this.clubCaller = clubCaller;
     }
@@ -52,7 +50,7 @@ public class EditClubFragment extends Fragment {
 
                 club = updateClub(club, title.getText().toString(), description.getText().toString());
 
-                clubCaller.handleEditClubDone(club);
+                clubCaller.handleEditDone(club);
             }
         });
 

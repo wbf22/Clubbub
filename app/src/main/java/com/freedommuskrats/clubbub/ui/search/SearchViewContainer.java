@@ -75,19 +75,15 @@ public class SearchViewContainer extends Fragment {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            switch (position){
-                case 0 :
-                    return new SearchClubsFragment(parent);
-                case 1 :
-                    return new SearchPeopleFragment(parent);
-                default :
-                    return new SearchClubsFragment(parent);
+            if (position == 0) {
+                return new SearchClubsFragment(parent);
             }
+            return new SearchClubsFragment(parent);
         }
 
         @Override
         public int getItemCount() {
-            return 3;
+            return 1;
         }
     }
 

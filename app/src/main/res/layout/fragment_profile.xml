@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/light_grey"
-    tools:context=".ui.club.owner.OwnerClubViewHomeFragment">
+    tools:context=".ui.home.ProfileFragment">
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editOwnerView"
+        android:id="@+id/editProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -37,17 +37,16 @@
 
 
             <TextView
-                android:id="@+id/ownerClubViewTitle"
+                android:id="@+id/personName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="ClubName"
+                android:text="Name"
                 android:textAlignment="center"
                 android:textSize="50sp" />
 
 
             <ImageView
-                android:id="@+id/ownerClubViewImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -55,7 +54,6 @@
 
 
             <TextView
-                android:id="@+id/ownerClubViewDescriptionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -64,7 +62,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/ownerClubViewDescription"
+                android:id="@+id/profileDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -73,38 +71,7 @@
                 android:textSize="15sp" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/green"
-                    android:text="@string/approve_requests"
-                    android:textColor="@color/dark_grey" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/inviteOtherUsers"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/grey"
-                    android:text="Invite Other Users"
-                    android:textColor="@color/dark_grey" />
-
-            </LinearLayout>
 
         </LinearLayout>
 

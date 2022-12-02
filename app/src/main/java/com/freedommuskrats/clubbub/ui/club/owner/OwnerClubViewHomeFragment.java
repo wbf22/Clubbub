@@ -3,29 +3,34 @@ package com.freedommuskrats.clubbub.ui.club.owner;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
-import com.freedommuskrats.clubbub.ui.club.EditClubCaller;
+import com.freedommuskrats.clubbub.ui.PersonSearchCaller;
+import com.freedommuskrats.clubbub.ui.club.EditCaller;
 import com.freedommuskrats.clubbub.ui.club.EditClubFragment;
+import com.freedommuskrats.clubbub.ui.home.HomeFragment;
+import com.freedommuskrats.clubbub.ui.search.SearchPeopleFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
-public class OwnerClubViewHomeFragment extends Fragment implements EditClubCaller {
+public class OwnerClubViewHomeFragment extends Fragment implements EditCaller {
 
+    private PersonSearchCaller homeFragment;
     private OwnerClubViewContainer parentContainer;
     private Club club;
 
-    public OwnerClubViewHomeFragment(Club club, OwnerClubViewContainer parentContainer) {
+    public OwnerClubViewHomeFragment(Club club, OwnerClubViewContainer parentContainer, PersonSearchCaller homeFragment) {
         this.club = club;
         this.parentContainer = parentContainer;
+        this.homeFragment = homeFragment;
     }
 
 
@@ -56,12 +61,21 @@ public class OwnerClubViewHomeFragment extends Fragment implements EditClubCalle
             }
         });
 
+
+        Button inviteOtherUsers = root.findViewById(R.id.inviteOtherUsers);
+        inviteOtherUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeFragment.goToFragment(new SearchPeopleFragment(club));
+            }
+        });
+
         return root;
     }
 
 
     @Override
-    public void handleEditClubDone(Club club) {
-        parentContainer.setContainerToFragment(new OwnerClubViewHomeFragment(club, parentContainer));
+    public void handleEditDone(Object obj) {
+        parentContainer.setContainerToFragment(new OwnerClubViewHomeFragment((Club)obj, parentContainer, homeFragment));
     }
 }

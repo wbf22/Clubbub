@@ -4,27 +4,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
-import com.freedommuskrats.clubbub.ui.club.EditClubCaller;
-import com.freedommuskrats.clubbub.ui.club.EditClubFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.squareup.picasso.Picasso;
+import com.freedommuskrats.clubbub.ui.PersonSearchCaller;
+import com.freedommuskrats.clubbub.ui.home.HomeFragment;
 
 public class OwnerClubViewContainer extends Fragment{
 
     public static final String CLUB_KEY = "CLUB";
 
+    private final PersonSearchCaller homeFragment;
     private Club club;
 
-    public OwnerClubViewContainer(Club club) {
+    public OwnerClubViewContainer(Club club, PersonSearchCaller homeFragment) {
         this.club = club;
+        this.homeFragment = homeFragment;
     }
 
 
@@ -35,7 +33,7 @@ public class OwnerClubViewContainer extends Fragment{
         View root = inflater.inflate(R.layout.fragment_owner_club_view_home, container, false);
 
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.ownerClubContainer, new OwnerClubViewHomeFragment(club, this));
+        transaction.replace(R.id.ownerClubContainer, new OwnerClubViewHomeFragment(club, this, homeFragment));
         transaction.commit();
 
         return root;

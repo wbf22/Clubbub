@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
+import com.freedommuskrats.clubbub.ui.club.owner.OwnerClubViewContainer;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -46,11 +47,11 @@ public class SearchPeopleFragment extends Fragment {
 
 
 
-    private SearchFragment parent;
+    private Club club;
     private Person user;
 
-    public SearchPeopleFragment(SearchFragment parent) {
-        this.parent = parent;
+    public SearchPeopleFragment(Club club) {
+        this.club = club;
     }
 
     @Override

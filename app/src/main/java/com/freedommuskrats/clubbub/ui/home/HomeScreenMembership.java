@@ -4,6 +4,7 @@ import static com.freedommuskrats.clubbub.domain.FakeData.defaultPerson;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubByName;
 import static com.freedommuskrats.clubbub.domain.FakeData.getClubsPersonIsMember;
 import static com.freedommuskrats.clubbub.domain.FakeData.isMember;
+import static com.freedommuskrats.clubbub.domain.FakeData.isOwner;
 
 import android.os.Bundle;
 
@@ -102,6 +103,9 @@ public class HomeScreenMembership extends Fragment {
             Picasso.get().load(R.mipmap.stickman_foreground).into(image);
             if (isMember(user, club)) {
                 memberSince.setText("Member Since 2022"); //TODO set this up to be in the data
+            }
+            if (isOwner(user, club)) {
+                memberSince.setText("Leader Since 2022");
             }
 //            if (isValidURL(club.getImageUrl())) {
 //                Picasso.get().load(club.getImageUrl()).into(image);
