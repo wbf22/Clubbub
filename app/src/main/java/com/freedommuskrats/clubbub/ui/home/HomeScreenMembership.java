@@ -90,7 +90,9 @@ public class HomeScreenMembership extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Club club = getClubByName(title.getText().toString());
-                    if (isMember(user, club)) {
+                    if (isOwner(user, club)) {
+                        userPageContainer.goToClubPage(club, HomeFragment.OWNER);
+                    } else if (isMember(user, club)) {
                         userPageContainer.goToClubPage(club, HomeFragment.MEMBER);
                     }
                 }
