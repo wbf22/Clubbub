@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
 import com.freedommuskrats.clubbub.domain.Person;
+import com.freedommuskrats.clubbub.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -139,10 +140,10 @@ public class SearchClubsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Club club = getClubByName(title.getText().toString());
-                    if (isMember(user, club)) {
-                        parent.goToClubPage(club, SearchFragment.MEMBER);
-                    } else if (isOwner(user, club)) {
-                        parent.goToClubPage(club, SearchFragment.OWNER);
+                    if (isOwner(user, club)) {
+                        parent.goToClubPage(club, HomeFragment.OWNER);
+                    } else if (isMember(user, club)) {
+                        parent.goToClubPage(club, HomeFragment.MEMBER);
                     } else {
                         parent.goToClubPage(club, SearchFragment.NON_MEMBER);
                     }
