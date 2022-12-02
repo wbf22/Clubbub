@@ -44,7 +44,7 @@ public class SearchFragment extends Fragment implements PersonSearchCaller {
     public void goToClubPage(Club club, String type) {
         if (type.equals(MEMBER)) {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.searchFrame, new MemberClubViewFragment(club));
+            transaction.replace(R.id.searchFrame, new MemberClubViewFragment(club, this));
             transaction.commit();
         } else if (type.equals(NON_MEMBER)) {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();

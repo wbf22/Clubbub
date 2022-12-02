@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.freedommuskrats.clubbub.R;
 import com.freedommuskrats.clubbub.domain.Club;
+import com.freedommuskrats.clubbub.ui.PersonSearchCaller;
 import com.freedommuskrats.clubbub.ui.club.AnnouncementChatFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -23,9 +24,11 @@ public class MemberClubViewFragment extends Fragment {
 
 
     private Club club;
+    private PersonSearchCaller personSearchCaller;
 
-    public MemberClubViewFragment(Club club) {
+    public MemberClubViewFragment(Club club, PersonSearchCaller personSearchCaller) {
         this.club = club;
+        this.personSearchCaller = personSearchCaller;
     }
 
 
@@ -84,13 +87,13 @@ public class MemberClubViewFragment extends Fragment {
         public Fragment createFragment(int position) {
             switch (position){
                 case 0 :
-                    return new MemberClubViewHomeFragment(club);
+                    return new MemberClubViewHomeFragment(club, personSearchCaller);
                 case 1 :
                     return new AnnouncementChatFragment(ANNOUNCEMENT, false);
                 case 2 :
                     return new AnnouncementChatFragment(CHAT, false);
                 default :
-                    return new MemberClubViewHomeFragment(club);
+                    return new MemberClubViewHomeFragment(club, personSearchCaller);
             }
         }
 

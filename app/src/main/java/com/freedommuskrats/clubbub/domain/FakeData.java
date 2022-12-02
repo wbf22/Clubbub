@@ -25,8 +25,8 @@ public class FakeData {
 
 
     private static Club club1 = new Club("Provo Fishing", null, "We fish around Utah lake", 40, 40, initSingletonPerson(bob), initSingletonPerson(bob), initImageUrls());
-    private static Club club2 = new Club("Provo Knitting", null, "We knit sweaters and...", 20, 40, people, initSingletonPerson(bob), initImageUrls());
-    private static Club club3 = new Club("BYU ballroom", null, "Ready to learn how to dance, ..", 10, 40, people, initSingletonPerson(kristie), initImageUrls());
+    private static Club club2 = new Club("Provo Knitting", null, "We knit sweaters and...", 20, 40, new ArrayList<>(people), initSingletonPerson(bob), initImageUrls());
+    private static Club club3 = new Club("BYU ballroom", null, "Ready to learn how to dance, ..", 10, 40, new ArrayList<>(people), initSingletonPerson(kristie), initImageUrls());
     private static Club club4 = new Club("SpringVille Potters", null, "Pottery is our passion.", 40, 10, initSingletonPerson(kristie), initSingletonPerson(kristie), initImageUrls());
 
     private static List<Club> clubs = new ArrayList<>(Arrays.asList(club1, club2, club3, club4));
@@ -206,5 +206,27 @@ public class FakeData {
 
         return people.get(i);
     }
+
+    public static void leaveAClub(Person user, Club club) {
+        int i = people.indexOf(user);
+        people.get(i).getClubsOwned().remove(club);
+        people.get(i).getClubsMemberOf().remove(club);
+
+        int j = clubs.indexOf(club);
+        clubs.get(j).getClubOwners().remove(user);
+        clubs.get(j).getMembers().remove(user);
+    }
+
+    public static void joinAClub(Person user, Club club) {
+        int i = people.indexOf(user);
+        people.get(i).getClubsOwned().add(club);
+        people.get(i).getClubsMemberOf().add(club);
+
+        int j = clubs.indexOf(club);
+        clubs.get(j).getClubOwners().add(user);
+        clubs.get(j).getMembers().add(user);
+    }
+
+
 
 }

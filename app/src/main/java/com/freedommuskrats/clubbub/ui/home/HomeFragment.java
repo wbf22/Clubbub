@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment implements EditCaller, PersonSearchCa
     public void goToClubPage(Club club, String type) {
         if (type.equals(MEMBER)) {
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.homeFrame, new MemberClubViewFragment(club));
+            transaction.replace(R.id.homeFrame, new MemberClubViewFragment(club, this));
             transaction.commit();
         } else if (type.equals(NON_MEMBER)) {
 
@@ -75,6 +75,7 @@ public class HomeFragment extends Fragment implements EditCaller, PersonSearchCa
 
     }
 
+    @Override
     public void goToFragment(Fragment fragment) {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.homeFrame, fragment);

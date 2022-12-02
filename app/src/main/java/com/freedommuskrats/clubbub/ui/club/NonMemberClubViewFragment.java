@@ -62,6 +62,8 @@ public class NonMemberClubViewFragment extends Fragment {
 
         adapter.addItems(doubledImageUrls);
 
+
+
         return view;
     }
 

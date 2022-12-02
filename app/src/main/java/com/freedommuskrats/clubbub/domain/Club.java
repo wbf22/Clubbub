@@ -18,7 +18,9 @@ public class Club implements Serializable {
     private List<String> imageUrls = new ArrayList<>();
 
 
-    public Club(){}
+    public Club(){
+        this.id = UUID.randomUUID();
+    }
 
     public Club(String name, String description, int longitude, int latitude) {
         this.id = UUID.randomUUID();
@@ -29,6 +31,7 @@ public class Club implements Serializable {
     }
 
     public Club(String name, String imageUrl, String description, int longitude, int latitude, List<Person> members, List<Person> clubOwners, List<String> imageUrls) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.imageUrl = imageUrl;
         this.description = description;
@@ -39,6 +42,14 @@ public class Club implements Serializable {
         this.imageUrls = imageUrls;
     }
 
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
