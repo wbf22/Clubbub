@@ -18,11 +18,16 @@ import com.google.android.material.tabs.TabLayout;
 
 public class ClubLists extends Fragment {
 
-
+    private int startingPage = 0;
     private HomeFragment parent;
 
     public ClubLists(HomeFragment parent) {
         this.parent = parent;
+    }
+
+    public ClubLists(HomeFragment parent, int startingPage) {
+        this.parent = parent;
+        this.startingPage = startingPage;
     }
 
 
@@ -41,6 +46,7 @@ public class ClubLists extends Fragment {
         ViewPager2 viewPager2 = view.findViewById(R.id.viewPagerHomeScreen);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, this.parent);
         viewPager2.setAdapter(viewPagerAdapter);
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -66,6 +72,8 @@ public class ClubLists extends Fragment {
                 tabLayout.getTabAt(position).select();
             }
         });
+
+        tabLayout.getTabAt(startingPage).select();
 
         return view;
     }

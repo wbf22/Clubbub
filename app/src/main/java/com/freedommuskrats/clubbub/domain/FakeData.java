@@ -37,11 +37,11 @@ public class FakeData {
     }
 
     public static List<Person> getFakePeople() {
-        bob.setClubsMemberOf(Arrays.asList(club1, club2, club3));
-        kristie.setClubsMemberOf(Arrays.asList(club2, club3, club4));
+        bob.setClubsMemberOf(new ArrayList<>(Arrays.asList(club1, club2, club3)));
+        kristie.setClubsMemberOf(new ArrayList<>(Arrays.asList(club2, club3, club4)));
 
-        bob.setClubsOwned(Arrays.asList(club1, club2));
-        kristie.setClubsOwned(Arrays.asList(club3, club4));
+        bob.setClubsOwned(new ArrayList<>(Arrays.asList(club1, club2)));
+        kristie.setClubsOwned(new ArrayList<>(Arrays.asList(club3, club4)));
 
         people = new ArrayList<>(Arrays.asList(bob, kristie));
         return people;

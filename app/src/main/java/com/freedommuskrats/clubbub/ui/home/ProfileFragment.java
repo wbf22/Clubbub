@@ -69,6 +69,6 @@ public class ProfileFragment extends Fragment implements EditCaller {
 
     @Override
     public void handleEditDone(Object obj) {
-        parent.goToFragment(new ProfileFragment(parent, (Person) obj));
+        parent.goToClubListsProfilePage();
     }
 }

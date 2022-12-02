@@ -82,6 +82,12 @@ public class HomeFragment extends Fragment implements EditCaller, PersonSearchCa
         transaction.commit();
     }
 
+    public void goToClubListsProfilePage() {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.homeFrame, new ClubLists(this, 1));
+        transaction.commit();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
